@@ -107,3 +107,34 @@ while running:
         else:
             screen.blit(walk_right[player_anim], (player_x, player_y))
      #Рахман
+
+     #Алихан
+     # отслеживание нажатий кнопок, движение влево вправо
+
+        if keys[pygame.K_LEFT] and player_x > 50:
+            player_x -= player_speed
+            bg_x += 10
+            cloud_x += 10
+        elif keys[pygame.K_RIGHT] and player_x < 740:
+            player_x += player_speed
+            bg_x -= 10
+            cloud_x -= 10
+        else:
+            bg_x -= 5
+            cloud_x -= 1
+
+    # анимация прыжка
+        if not is_jump:
+            if keys[pygame.K_UP]:
+                is_jump = True
+        else:
+            if jump_count >= -12:
+                if jump_count > 0:
+                    player_y -= (jump_count ** 2) / 2
+                else:
+                    player_y += (jump_count ** 2) / 2
+                jump_count -= 3
+            else:
+                is_jump = False
+                jump_count = 12
+        #Алихан
