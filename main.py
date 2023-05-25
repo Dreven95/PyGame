@@ -138,3 +138,29 @@ while running:
                 is_jump = False
                 jump_count = 12
         #Алихан
+        #Zelim
+        # анимация персонажа
+        if player_anim == 3:
+            player_anim = 0
+        else:
+            player_anim += 1
+
+    else:
+            screen.blit(proigrysh, (0, 0))
+
+
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+            pygame.quit()
+        if event.type == ghost_timer:
+            ghost_list_in_game.append(ghost.get_rect(topleft=(842, 415)))
+            #___
+        if game_play and event.type == pygame.KEYUP and event.key == pygame.K_SPACE and bullets_num > 0:
+            bullets.append(bullet.get_rect(topleft=(player_x + 10, player_y + 10)))
+            bullets_num -= 1
+    pygame.display.update()
+
+    clock.tick(12)
+    #Zelim
