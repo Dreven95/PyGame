@@ -1,3 +1,4 @@
+#Адам
 import pygame
 clock = pygame.time.Clock()
 
@@ -21,7 +22,11 @@ walk_left = [
     pygame.image.load("image/pers_left/pers_left3.png").convert_alpha(),
     pygame.image.load("image/pers_left/pers_left4.png").convert_alpha(),
 ]
+#Адам
 
+
+
+#Имам
 cloud = pygame.image.load("image/cloud.png").convert_alpha()
 cloud_x = 842
 cloud_y = 50
@@ -53,5 +58,52 @@ mp3 = pygame.mixer.Sound("mp3/pawapepe_gemabody_Павапепе_гемабод�
 mp3.play()
 
 game_play = True
-
+#Создал переменную для цикла рахьмана
 running = True
+#Имам
+
+#Рахман
+while running:
+    screen.blit(bg, (bg_x, 0))
+    screen.blit(bg, (bg_x + 1280, 0))
+    screen.blit(cloud, (cloud_x, cloud_y))
+
+    if game_play:
+
+    # воображаемые квадраты
+        player_rect = walk_left[0].get_rect(topleft=(player_x, player_y))
+
+    # спам призраков
+        if ghost_list_in_game:
+            for (i, element) in enumerate(ghost_list_in_game):
+                screen.blit(ghost, element)
+                element.x -= 15
+
+                if element.x < -15:
+                    ghost_list_in_game.pop(i)
+
+                if player_rect.colliderect(element):
+                     game_play = False
+
+        keys = pygame.key.get_pressed()
+
+    # снаряд
+        if bullets:
+            for(i, element) in enumerate(bullets):
+                screen.blit(bullet, (element.x, element.y))
+                element.x += 25
+
+                if element.x > 850:
+                    bullets.pop(i)
+
+                if ghost_list_in_game:
+                    for (index, ghost_el) in enumerate(ghost_list_in_game):
+                        if element.colliderect(ghost_el):
+                            ghost_list_in_game.pop(index)
+                            bullets.pop(i)
+
+        if keys[pygame.K_LEFT]:
+            screen.blit(walk_left[player_anim], (player_x, player_y))
+        else:
+            screen.blit(walk_right[player_anim], (player_x, player_y))
+     #Рахман
